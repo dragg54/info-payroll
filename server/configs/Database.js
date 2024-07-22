@@ -13,7 +13,7 @@ const db = new Sequelize(
     host: '176.74.18.130',
     // host: '127.0.0.1',
     port: 3306,
-    logging: false
+    logging: true
     // host: process.env.DB_HOST,
     // port: process.env.DB_PORT,
   }
