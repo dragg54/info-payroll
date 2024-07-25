@@ -12,6 +12,21 @@ export class EmployeeService {
            if(!existingPosition){
             throw new BadRequestException("Position must exist before an employee can be added")
            }
+        const profilePicture = new File(req.file)
+        if (profilePicture) {
+            if (profilePicture.isValidFile && profilePicture.isInvalidSize()) {
+                throw new BadRequestException(
+                    "The file is greater than 250kb"
+                )
+            }
+
+            if (profilePicture.isValidFile && profilePicture.isInvalidType()) {
+                throw new BadRequestException(
+                    "The file extension is not supported"
+                )
+            }
+            req.body.profilePicture = profilePicture
+        }
            await models.Employee.create(req.body)
     }
 
