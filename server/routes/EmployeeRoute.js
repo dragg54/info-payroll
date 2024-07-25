@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { EmployeeController } from "../controllers/EmployeeController.js";
+import { Upload } from "../middlewares/File.js";
 
 const employeeRouter = Router()
 
@@ -29,7 +30,7 @@ const employeeRouter = Router()
  *            
  *          
  */
-employeeRouter.post('/', EmployeeController.createEmployee);
+employeeRouter.post('/', Upload.single("profilePicture"), EmployeeController.createEmployee);
 
 
 /**
@@ -60,7 +61,7 @@ employeeRouter.post('/', EmployeeController.createEmployee);
  *            
  *          
  */
-employeeRouter.post('/:id', EmployeeController.updateEmployee);
+employeeRouter.put('/:id', EmployeeController.updateEmployee);
 
 
 /**
